@@ -1,0 +1,50 @@
+body {
+    background-color: rgb(164, 151, 177);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    color: aliceblue;
+    text-align: center;
+}
+
+section {
+    background-color: aliceblue;
+    height: fit-content;
+    width: 450px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 5px black;
+    padding: 15px;
+    margin: auto;
+    
+}
+
+footer {
+    padding-top: 10px;
+    text-align: center;
+    color: aliceblue;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+th, td {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+th {
+background-color: #f2f2f2;
+}
+
+.precoBaixo {
+background-color: #b2e288;
+}
+
+.hidden {
+    display: none;
+  }
