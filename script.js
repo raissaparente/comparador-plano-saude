@@ -1,4 +1,11 @@
-resultado = document.getElementById('resultado')
+const resultContainer = document.getElementById('mostrar-planos')
+
+function trocarTela(){
+    const calcContainer = document.querySelector("#calc-container")
+    
+    calcContainer.classList.toggle("hide")
+    resultContainer.classList.toggle("hide")
+}
 
 function calcularImc() {
     const peso = document.getElementById('peso').value
@@ -62,54 +69,64 @@ function calcularOperadoraB() {
 
 function novaLinhaTabela(tabela, plano, preco) {
     const tabelaNova = document.getElementById(tabela)
-    const linha = tabelaNova.insertRow()
+    const tbody = tabelaNova.getElementsByTagName('tbody')[0]
+    const linha = tbody.insertRow()
+    
 
     var colunaPlano = linha.insertCell(0)
     var colunaPreco = linha.insertCell(1)
 
     colunaPlano.innerHTML = plano
     colunaPreco.innerHTML = preco
-
 }
 
-function tabelaMenorPreco(tabela, arrayResultados) {
-    tabelaMenor = document.getElementById(tabela)
-    
-    let menorChave
-    let menorValor = Infinity
+function destacarMenorPreco(idTabela, classeCor) {
+    var tabela = document.getElementById(idTabela);
+    var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    var menorValor = Infinity;
+    var indexMenorValor = -1;
 
-    for ([chave, valor] of arrayResultados) {
-        if (valor < menorValor) {
-            menorValor = valor
-            menorChave = chave
-        }
+    // Encontrar o menor valor na coluna "valor"
+    for (var i = 0; i < linhas.length; i++) {
+        var valorFormatado = linhas[i].getElementsByTagName('td')[1].innerHTML;
+        var valorAtual = parseFloat(valorFormatado.replace(/[^\d,-]/g, ''));
+      if (valorAtual < menorValor) {
+        menorValor = valorAtual;
+        indexMenorValor = i;
+      }
     }
-    
-    novaLinhaTabela(tabela, menorChave, menorValor)
 
-    tabela.bgColor = '#b2e288'
-
+    // Adicionar classe à linha com o menor valor
+    if (indexMenorValor !== -1) {
+      linhas[indexMenorValor].classList.add(classeCor);
+    }
 }
 
-function exibirOperadora(resultadoTabela, tabela, melhorTabela) {
+function exibirOperadora(resultadoTabela, tabela) {
     let tabelaAArray = Object.entries(resultadoTabela)
 
     for ([chave, valor] of tabelaAArray) {
-            novaLinhaTabela(tabela, chave, valor)
+            novaLinhaTabela(tabela, chave, valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
     }
 
-    tabelaMenorPreco(melhorTabela, tabelaAArray)
+    destacarMenorPreco(tabela, 'precoBaixo') 
 }
 
-function exibirResultados() {
+function exibirResultados() { 
     const tabelaA = calcularOperadoraA()
     const tabelaB = calcularOperadoraB()
 
-    exibirOperadora(tabelaA, 'tabela1', 'melhorTabela1')
-    exibirOperadora(tabelaB, 'tabela2', 'melhorTabela2')
+    exibirOperadora(tabelaA, 'tabela1')
+    exibirOperadora(tabelaB, 'tabela2')
 
-    resultado.classList.toggle('hidden') 
+    trocarTela()
 }
 
-document.getElementById('botaover').addEventListener("click", exibirResultados)
+function recarregarPagina() {
+    location.reload();
+}
+
+document.getElementById('calc-btn').addEventListener('click', exibirResultados)
+
+document.getElementById('back-btn').addEventListener('click', recarregarPagina)
 

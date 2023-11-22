@@ -1,50 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
 body {
-    background-color: rgb(164, 151, 177);
-    font-family: Arial, Helvetica, sans-serif;
+    background-color:#090d3f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
 }
 
-header {
-    color: aliceblue;
-    text-align: center;
+.hide {
+    display: none !important;
 }
 
-section {
-    background-color: aliceblue;
-    height: fit-content;
-    width: 450px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 5px black;
-    padding: 15px;
-    margin: auto;
-    
+.container {
+    min-width: 300px;
+    min-height: 400px;
+    background-color: #ddd3d359;
+    padding: 2rem;
 }
 
-footer {
-    padding-top: 10px;
+
+#calc-container h1 {
     text-align: center;
-    color: aliceblue;
+    margin-bottom: 2rem;
 }
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    margin-left: 0.6rem;
+    color: #ccc;
+}
+
+.form-control input {
+    padding: 1rem 0.5rem;
+}
+
+.action-control{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+button {
+    text-transform: uppercase;
+    padding: 1rem 0.2rem;
+    background-color: #eb671b;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.9;
+    flex: 1;
+}
+
+button:hover {
+    opacity: 10;
+}
+
+.mostrar-planos {
+    display: flex;
+    flex-direction: row;
+}
+
 
 table {
     border-collapse: collapse;
     width: 100%;
-  }
-
-th, td {
-border: 1px solid #dddddd;
-text-align: left;
-padding: 8px;
 }
 
-th {
-background-color: #f2f2f2;
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+h2 {
+    padding: 1rem;
+}
+
+h2 span {
+    margin-left: 0.6rem;
 }
 
 .precoBaixo {
-background-color: #b2e288;
+    background-color: #91b760
 }
 
-.hidden {
-    display: none;
-  }
+footer {
+    color: #ddd3d359;
+    margin: 0.6rem;
+}
+
+@media screen and (min-width: 768px){
+	.container {
+        min-width: 400px;
+    }
+}
